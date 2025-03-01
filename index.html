@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Anonymous Shared Economy Pol</title>
+    <title>Anonymous Shared Economy Poll</title>
 
     <link rel="canonical" href="examples/checkout/">
     <link rel="stylesheet" href="assets/css@3.css">
@@ -85,7 +85,7 @@
       </p>
     </div>
 
-    <div class="row g-5">
+    <div class="row g-5" id="main-form">
       <div class="col-md-12 col-lg-12">
         <h4 class="mb-3">Expenses poll</h4>
         <form class="needs-validation" novalidate="">
@@ -97,7 +97,7 @@
                 <span class="input-group-text">@</span>
                 <input type="text" class="form-control" id="username" placeholder="Username" required="">
               <div class="invalid-feedback">
-                  Your username is required.
+                  Your username or a pseudonym is required.
                 </div>
               </div>
             </div>
@@ -112,7 +112,7 @@
 
             <div class="col-5">
               <label for="address" class="form-label">Monthly Income</label>
-              <input type="text" class="form-control" id="income" placeholder="enter your total monthly income" required="">
+              <input type="number" class="form-control" id="income" placeholder="enter your total monthly income" required="">
               <div class="invalid-feedback">
                 Please enter your monthly income.
               </div>
@@ -120,28 +120,28 @@
 
             <div class="col-5">
               <label for="expense" class="form-label">Monthly Expenses</label>
-              <input type="text" class="form-control" id="expense" placeholder="enter all your expense">
+              <input type="number" class="form-control" id="expense" placeholder="enter all your expense">
             </div>
 
             <div class="col-2">
               <label for="savings" class="form-label">Monthly Savings %</label>
-              <input type="text" class="form-control" id="savings" required="">
+              <input type="number" class="form-control" id="savings" required="" readonly="readonly">
               <div class="invalid-feedback">
                 Please enter your monthly savings.
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-12">
               <label for="address" class="form-label">What Amount of your income comes from businesses within this community, Give acurate or Near accurate answer </label>
-              <input type="text" class="form-control" id="communityAmount" placeholder="Amount from community" required="">
+              <input type="number" class="form-control" id="communityAmount" placeholder="Amount from community" required="">
               <div class="invalid-feedback">
                 Please enter your amount from community.
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-12">
               <label for="address" class="form-label">What Percentage of your income comes from businesses within this community (Computed from amount)</label>
-              <input type="text" class="form-control" id="communityPercent" placeholder="% from community" required="" readonly="readonly">
+              <input type="number" class="form-control" id="communityPercent" placeholder="% from community" required="" readonly="readonly">
               <div class="invalid-feedback">
                 Please enter your amount from community.
               </div>
@@ -157,10 +157,16 @@
         </form>
       </div>
     </div>
+    <div class="row g-5 d-none" id="thank-you">
+      <div class="py-5 text-center">
+        <h2 class="text-success">Thank you for completing the form</h2>
+        <!-- <p class="lead"> <a href="#results">view poll results.</a> </p> -->
+      </div>
+    </div>
   </main>
 
   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2025 feeedbackforms.net</p>
+    <p class="mb-1">&copy; 2025 feedbackforms.net</p>
     <ul class="list-inline">
       <li class="list-inline-item"><a href="#">Privacy</a></li>
       <li class="list-inline-item"><a href="#">Terms</a></li>
