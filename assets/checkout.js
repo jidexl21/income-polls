@@ -51,7 +51,7 @@ let Actions = {
       return previous; 
     }, {});
 
-    axios.post("http://localhost:3000/api/data", toSend)
+    axios.post("https://income-polls.a-z.ng/api/data", toSend)
     .then(function(){
       Actions.SetThankYou();
     })
