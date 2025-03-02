@@ -5,7 +5,7 @@ let Actions = {
            !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
   },
   SetInitial : function(){
-    console.log("set initial");
+    // console.log("set initial");
     var mainForm = document.getElementById("main-form");
     mainForm.classList.remove("d-none");
 
@@ -31,7 +31,7 @@ let Actions = {
     if(Actions.IsNumeric(inc) && Actions.IsNumeric(exp) && parseInt(inc) >  0){
       document.querySelector("#savings").value = ((inc - exp) / inc) * 100; 
     }
-    console.log(`${inc.value} ${exp.value}`)
+    // console.log(`${inc.value} ${exp.value}`)
   },
   CalculateCommunityPercent: function(){
     var inc = document.querySelector("#income").value; 
@@ -39,11 +39,54 @@ let Actions = {
     if(Actions.IsNumeric(inc) && Actions.IsNumeric(fromCommunity) && parseInt(inc) >  0){
       document.querySelector("#communityPercent").value = (fromCommunity/ inc) * 100; 
     }
-    console.log(`calculating community`)
+    // console.log(`calculating community`)
   },
   SendResultsAndExit: function(){
-    Actions.SetThankYou();
-  }
+    var currForm = document.getElementById("main-form"); 
+    var data = Actions.Serialize(currForm)
+
+   var toSend = data.split("&").reduce((previous, curr)=>{
+      var toks = curr.split('=')
+      previous[toks[0]] = decodeURIComponent(toks[1]);
+      return previous; 
+    }, {});
+
+    axios.post("http://localhost:3000/api/data", toSend)
+    .then(function(){
+      Actions.SetThankYou();
+    })
+    .catch(function(e){
+      console.error(e)
+    })
+   
+  }, 
+  Serialize: function(form, evt){
+    var evt    = evt || window.event;
+    evt.target = evt.target || evt.srcElement || null;
+    var field, query='';
+    if(typeof form == 'object' && form.nodeName == 'FORM'){
+        for(i=form.elements.length-1; i>=0; i--){
+            field = form.elements[i];
+            if(field.name && field.type != 'file' && field.type != 'reset' && !field.disabled){
+                if(field.type == 'select-multiple'){
+                    for(j=form.elements[i].options.length-1; j>=0; j--){
+                        if(field.options[j].selected){
+                            query += '&' + field.name + "=" + encodeURIComponent(field.options[j].value).replace(/%20/g,'+');
+                        }
+                    }
+                }
+                else{
+                    if((field.type != 'submit' && field.type != 'button') || evt.target == field){
+                        if((field.type != 'checkbox' && field.type != 'radio') || field.checked){
+                            query += '&' + field.name + "=" + encodeURIComponent(field.value).replace(/%20/g,'+');
+                        }   
+                    }
+                }
+            }
+        }
+    }
+    return query.substr(1);
+}
 };
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -57,9 +100,10 @@ let Actions = {
   // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
         event.preventDefault()
-        event.stopPropagation();
+        event.stopPropagation()
+      if (!form.checkValidity()) {
+        ;
       }else{
         Actions.CalculateMonthlySavings();
         Actions.CalculateCommunityPercent();
@@ -82,6 +126,8 @@ let Actions = {
 
   document.querySelector("#communityAmount").addEventListener('keyup', evt=>{
     Actions.CalculateCommunityPercent();
-  }); 
+  });
+
+
 
 })()

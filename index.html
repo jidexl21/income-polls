@@ -85,17 +85,17 @@
       </p> -->
     </div>
 
-    <div class="row g-5" id="main-form">
+    <div class="row g-5" >
       <div class="col-md-12 col-lg-12">
         <!-- <h4 class="mb-3">Expenses poll</h4> -->
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation" novalidate="" id="main-form" method="post">
           <div class="row g-3">
 
             <div class="col-12">
               <label for="username" class="form-label">Username</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="">
               <div class="invalid-feedback">
                   Your username or a pseudonym is required.
                 </div>
@@ -104,7 +104,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -112,7 +112,7 @@
 
             <div class="col-5">
               <label for="address" class="form-label">Monthly Income</label>
-              <input type="number" class="form-control" id="income" placeholder="enter your total monthly income" required="">
+              <input type="number" class="form-control" name="income" id="income" placeholder="enter your total monthly income" required="">
               <div class="invalid-feedback">
                 Please enter your monthly income.
               </div>
@@ -120,12 +120,12 @@
 
             <div class="col-5">
               <label for="expense" class="form-label">Monthly Expenses</label>
-              <input type="number" class="form-control" id="expense" placeholder="enter total expenses" required="">
+              <input type="number" class="form-control" id="expense" name="expense" placeholder="enter total expenses" required="">
             </div>
 
             <div class="col-2">
               <label for="savings" class="form-label">Monthly Savings %</label>
-              <input type="number" class="form-control" id="savings" required="" readonly="readonly">
+              <input type="number" class="form-control" id="savings" name ="savings" required="" readonly="readonly">
               <div class="invalid-feedback">
                 Please enter your monthly savings.
               </div>
@@ -133,7 +133,7 @@
 
             <div class="col-12">
               <label for="address" class="form-label">What Amount of your income comes from businesses within this community, Give accurate or Near accurate answer </label>
-              <input type="number" class="form-control" id="communityAmount" placeholder="Amount from community" required="">
+              <input type="number" class="form-control" id="communityAmount" name="communityAmount" placeholder="Amount from community" required="">
               <div class="invalid-feedback">
                 Please enter your amount from community.
               </div>
@@ -141,7 +141,7 @@
 
             <div class="col-12">
               <label for="address" class="form-label">What Percentage of your income comes from businesses within this community (Computed from amount)</label>
-              <input type="number" class="form-control" id="communityPercent" placeholder="% from community" required="" readonly="readonly">
+              <input type="number" class="form-control" id="communityPercent" name="communityPercent" placeholder="% from community" required="" readonly="readonly">
               <div class="invalid-feedback">
                 Please enter your amount from community.
               </div>
@@ -175,7 +175,7 @@
   </footer>
 </div>
 <script src="assets/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <script src="assets/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="assets/checkout.js"></script>
 
 </body></html>
